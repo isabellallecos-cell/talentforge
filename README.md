@@ -1,0 +1,110 @@
+# TalentForge
+
+**Recruitment operations with evidence-backed AI assistance.** TalentForge keeps job requisitions, applications, interviews and scorecards in one consistent workflow. AI drafts summaries grounded in reviewer notes, but people make every hiring decision.
+
+> **Status:** early development, following a 12-week roadmap (see below). The project uses only synthetic data and fictional applicants.
+
+## The problem
+
+Hiring teams lose context across applications, interview feedback and scheduling tools. Recruiters need:
+
+- a consistent process from job opening to decision
+- structured, comparable interview feedback
+- summaries they can trust, with links back to the source notes
+
+TalentForge provides that workflow and keeps AI in an assisting role. It never advances, rejects or ranks a candidate on its own.
+
+## Who it's for
+
+- **Recruiters:** manage requisitions, pipelines and candidate communication
+- **Hiring managers:** approve openings and decide on next stages
+- **Interviewers:** schedule interviews and submit structured scorecards
+- **Applicants (demo):** apply and track their application
+- **Administrators:** manage access, retention and audit history
+
+## Demo workflow
+
+1. Publish a synthetic job opening
+2. Submit a fictional applicant profile
+3. Move the application through hiring stages
+4. Schedule a simulated interview
+5. Record a structured scorecard
+6. Generate a summary that links to its sources
+7. A person decides the next stage
+8. Export the audit history
+
+## Planned features
+
+- Job requisitions with approvals
+- Applicant portal (fictional data)
+- Resume parsing with explicit human review
+- Configurable hiring stages
+- Interview scheduling with conflict checks, and scorecards
+- Candidate communication templates
+- Structured interview rubrics
+- AI summaries grounded in reviewer notes
+- Decision audit trail and access controls
+- Recruiting funnel and time-to-stage analytics
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Angular, TypeScript |
+| Backend | Java, Spring Boot, Spring Security |
+| AI integration | Spring AI |
+| Database | PostgreSQL with pgvector |
+| Cache | Redis |
+| Local environment | Docker Compose |
+| CI | GitHub Actions |
+
+## Architecture
+
+TalentForge starts as a modular monolith for transactional writes. Slow work such as document parsing and AI summaries runs in background jobs. PostgreSQL is the single source of truth.
+
+```mermaid
+flowchart LR
+  User[Recruiter / interviewer] --> Web[Angular app]
+  Web --> API[Spring Boot API]
+  API --> DB[(PostgreSQL + pgvector)]
+  API --> Jobs[Background jobs]
+  Jobs --> AI[Optional AI adapter]
+  Jobs --> DB
+  API --> Audit[(Audit trail)]
+```
+
+### Planned repository layout
+
+```text
+talentforge/
+├── apps/web/              # Angular frontend
+├── services/api/          # Spring Boot domain API
+├── services/worker/       # background jobs
+├── packages/contracts/    # OpenAPI contracts
+├── packages/fixtures/     # synthetic hiring data
+├── infra/compose/         # local services
+├── tests/                 # integration and end-to-end tests
+└── docs/                  # architecture decisions and progress notes
+```
+
+## Design rules
+
+- AI output is a draft. It must cite reviewer notes and never makes or applies a hiring decision.
+- Every stage change is made by an authorized person and recorded in the audit trail.
+- Permissions are enforced on the server, not just in the UI.
+- Applicant data has explicit privacy and retention rules.
+- Retries are safe through idempotency keys and unique constraints.
+
+## Roadmap
+
+| Weeks | Focus |
+|---|---|
+| 1–2 | Angular/Spring workspace, synthetic hiring data, authentication and permissions |
+| 3–5 | Job requisitions, applicant portal, applications and the stage state machine |
+| 6–8 | Interview scheduling, scorecards, recruiting metrics |
+| 9–10 | AI draft summaries with citations, reviewer approval, privacy and retention |
+| 11–12 | Accessibility, security and concurrency testing; deployment and demo |
+
+## Getting started
+
+Setup instructions will be added once the first services are in place.
