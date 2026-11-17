@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: talentforge-worker
+  main:
+    web-application-type: none
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
