@@ -2,7 +2,7 @@
 
 **Recruitment operations with evidence-backed AI assistance.** TalentForge keeps job requisitions, applications, interviews and scorecards in one consistent workflow. AI drafts summaries grounded in reviewer notes, but people make every hiring decision.
 
-> **Status:** early development, following a 12-week roadmap (see below). The project uses only synthetic data and fictional applicants.
+> **Status:** early development, following a 7-week roadmap (see below). The project uses only synthetic data and fictional applicants.
 
 ## The problem
 
@@ -97,13 +97,15 @@ talentforge/
 
 ## Roadmap
 
-| Weeks | Focus |
-|---|---|
-| 1–2 | Angular/Spring workspace, synthetic hiring data, authentication and permissions |
-| 3–5 | Job requisitions, applicant portal, applications and the stage state machine |
-| 6–8 | Interview scheduling, scorecards, recruiting metrics |
-| 9–10 | AI draft summaries with citations, reviewer approval, privacy and retention |
-| 11–12 | Accessibility, security and concurrency testing; deployment and demo |
+| Week | Focus | Status |
+|---|---|---|
+| Week 1 | **Foundation** — Scaffold Angular and Spring Boot workspace with Compose stack, add synthetic hiring data generator with tests | Planned |
+| Week 2 | **Auth & requisitions** — Add Spring Security login with users and roles, enforce recruiter permissions with tests, add login and app shell, add job requisition approval workflow, add requisition screens | Planned |
+| Week 3 | **Applicant portal** — Add public job listing and application form, add resume upload with type and size validation | Planned |
+| Week 4 | **Pipeline & interviews** — Add stage state machine, add pipeline board, add interview scheduling, detect scheduling conflicts | Planned |
+| Week 5 | **Scorecards & metrics** — Add structured scorecards, add feedback form, add funnel analytics endpoint, add recruiting metrics dashboard | Planned |
+| Week 6 | **AI summaries & privacy** — Add candidate summary drafts with mock model and citations, require reviewer approval for summaries, add retention and deletion jobs | Planned |
+| Week 7 | **Release** — Add accessibility checks, add concurrency and security tests, add build and test workflow, add setup guide, demo script and runbooks | Planned |
 
 ## Getting started
 
