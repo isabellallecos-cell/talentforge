@@ -15,5 +15,9 @@
 - ADR 0001 records the workspace layout (Angular app, Spring Boot API and
   worker, contracts, fixtures, Compose) and the synthetic data rules.
 - Week 1 acceptance cases AC-01.1 to AC-01.15 written; none verified yet.
-- Next: workspace scaffold with the Compose stack, then the fixture generator
-  and its tests.
+- Workspace scaffold added: Gradle build for `services/api` and `services/worker`,
+  Angular app in `apps/web`, Compose stack in `infra/compose`.
+- Synthetic hiring data generator added in `packages/fixtures` with tests for
+  AC-01.6 to AC-01.15 (13 tests passing). Default set: 3 organizations, 46
+  applications across every stage, 5 listed edge cases.
+- Not yet verified: AC-01.1 to AC-01.5 (need JDK 21, Node.js and Docker).

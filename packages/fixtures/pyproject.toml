@@ -1,0 +1,9 @@
+[project]
+name = "talentforge-fixtures"
+version = "0.1.0"
+description = "Deterministic synthetic hiring data for TalentForge development, tests and demos"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+talentforge-fixtures = "talentforge_fixtures.__main__:main"

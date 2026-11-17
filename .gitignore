@@ -19,6 +19,9 @@ __pycache__/
 *.pyc
 .venv/
 
+# Generated fixture sets
+.fixtures/
+
 # Editors and OS
 .idea/
 .vscode/
