@@ -107,6 +107,12 @@ talentforge/
 | Week 6 | **AI summaries & privacy** — Add candidate summary drafts with mock model and citations, require reviewer approval for summaries, add retention and deletion jobs | Planned |
 | Week 7 | **Release** — Add accessibility checks, add concurrency and security tests, add build and test workflow, add setup guide, demo script and runbooks | Planned |
 
+## Documentation
+
+- [Architecture decisions](docs/adr/)
+- [Week 1 acceptance cases](docs/acceptance/week-01-workspace-and-hiring-fixtures.md)
+- [Progress notes](docs/progress/week-01.md)
+
 ## Getting started
 
 Setup instructions will be added once the first services are in place.
