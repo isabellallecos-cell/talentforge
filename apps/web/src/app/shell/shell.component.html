@@ -1,0 +1,61 @@
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="topbar">
+  <span class="brand">TalentForge</span>
+
+  @if (organizations.memberships().length > 1) {
+    <label class="org-switch">
+      <span class="visually-hidden">Organization</span>
+      <select [value]="organizations.activeId()" (change)="switchOrganization($event)">
+        @for (membership of organizations.memberships(); track membership.organizationId) {
+          <option [value]="membership.organizationId">{{ membership.organizationName }}</option>
+        }
+      </select>
+    </label>
+  } @else if (organizations.active(); as active) {
+    <span class="org-name">{{ active.organizationName }}</span>
+  }
+
+  <div class="account">
+    @if (user(); as user) {
+      <span class="who">
+        {{ user.displayName }}
+        @if (roleLabel(); as role) {
+          <span class="role">{{ role }}</span>
+        }
+      </span>
+    }
+    <button type="button" class="secondary" (click)="signOut()" [disabled]="signingOut()">Sign out</button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav aria-label="Main">
+    <ul>
+      @for (item of organizations.navItems(); track item.path) {
+        <li>
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+            ariaCurrentWhenActive="page"
+            >{{ item.label }}</a
+          >
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <main id="content" tabindex="-1">
+    @if (organizations.memberships().length === 0) {
+      <section class="empty">
+        <h1>No organization yet</h1>
+        <p>Your account is not a member of any organization. Ask an admin to invite you.</p>
+      </section>
+    } @else {
+      @if (organizations.accessFailed()) {
+        <p class="banner" role="alert">Your permissions could not be loaded. Some sections may be hidden.</p>
+      }
+      <router-outlet />
+    }
+  </main>
+</div>

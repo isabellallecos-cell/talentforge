@@ -1,0 +1,60 @@
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 22rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: var(--tf-surface);
+  border: 1px solid var(--tf-border);
+  border-radius: 0.5rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.lead {
+  margin: 0 0 1rem;
+  color: var(--tf-muted);
+}
+
+label {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+button {
+  margin-top: 1.25rem;
+}
+
+.notice,
+.error {
+  margin: 0 0 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.375rem;
+}
+
+.notice {
+  background: var(--tf-info-bg);
+  color: var(--tf-info);
+}
+
+.error {
+  background: var(--tf-danger-bg);
+  color: var(--tf-danger);
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--tf-danger);
+}

@@ -1,9 +1,73 @@
 :root {
+  --tf-text: #1f2933;
+  --tf-muted: #52606d;
+  --tf-bg: #f7f8fa;
+  --tf-surface: #ffffff;
+  --tf-border: #d9dee5;
+  --tf-primary: #1d4ed8;
+  --tf-primary-text: #ffffff;
+  --tf-info: #1e40af;
+  --tf-info-bg: #e0e7ff;
+  --tf-danger: #b91c1c;
+  --tf-danger-bg: #fee2e2;
+
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  color: #1f2933;
-  background: #f7f8fa;
+  color: var(--tf-text);
+  background: var(--tf-bg);
 }
 
 body {
   margin: 0;
+}
+
+input,
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.625rem;
+  font: inherit;
+  color: inherit;
+  background: var(--tf-surface);
+  border: 1px solid var(--tf-border);
+  border-radius: 0.375rem;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--tf-danger);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--tf-primary-text);
+  background: var(--tf-primary);
+  border: 1px solid var(--tf-primary);
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+button.secondary {
+  color: var(--tf-text);
+  background: var(--tf-surface);
+  border-color: var(--tf-border);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+:focus-visible {
+  outline: 3px solid var(--tf-primary);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
