@@ -36,14 +36,18 @@ in one organization and an interviewer in another. The matrix lives in
 |---|---|
 | `GET /v1/organizations/{id}/access` | membership; returns `role` and sorted `permissions` keys for the web app's navigation |
 | `GET /v1/organizations/{id}/members` | `members:view` |
+| `GET /v1/organizations/{id}/requisitions[?status=]`, `GET …/requisitions/{rid}`, `GET …/{rid}/events` | `requisitions:view` |
+| `POST …/requisitions`, `PUT …/requisitions/{rid}`, `GET …/requisitions/hiring-managers` | `requisitions:create` |
+| `POST …/requisitions/{rid}/submit`, `…/withdraw`, `…/reopen` | `requisitions:create` (withdraw: the submitter or an admin) |
+| `POST …/requisitions/{rid}/approve`, `…/reject` | `requisitions:approve`, plus the row-level rules in [requisitions.md](../requisitions.md) |
 
 The web app may hide screens using `permissions`, but the API never trusts the
 client: every endpoint repeats the check.
 
 ## Open risks
 
-- Scoping inside an organization (an interviewer seeing *only* their own
-  interviews, a hiring manager approving only their own requisitions) needs
-  row-level checks in those features, not just this matrix.
+- Scoping inside an organization needs row-level checks in each feature, not
+  just this matrix. Requisitions have them (only the assigned hiring manager or
+  an admin decides, never the submitter); interviews still need "only my own".
 - `members:manage` has no endpoint yet; the last-admin rule (an organization
   must keep one admin) has to be enforced when it is added.
