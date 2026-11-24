@@ -100,7 +100,7 @@ talentforge/
 | Week | Focus | Status |
 |---|---|---|
 | Week 1 | **Foundation** — Scaffold Angular and Spring Boot workspace with Compose stack, add synthetic hiring data generator with tests | ✅ Done |
-| Week 2 | **Auth & requisitions** — Add Spring Security login with users and roles, enforce recruiter permissions with tests, add login and app shell, add job requisition approval workflow, add requisition screens | Planned |
+| Week 2 | **Auth & requisitions** — Add Spring Security login with users and roles, enforce recruiter permissions with tests, add login and app shell, add job requisition approval workflow, add requisition screens | ✅ Done |
 | Week 3 | **Applicant portal** — Add public job listing and application form, add resume upload with type and size validation | Planned |
 | Week 4 | **Pipeline & interviews** — Add stage state machine, add pipeline board, add interview scheduling, detect scheduling conflicts | Planned |
 | Week 5 | **Scorecards & metrics** — Add structured scorecards, add feedback form, add funnel analytics endpoint, add recruiting metrics dashboard | Planned |
