@@ -27,6 +27,26 @@ npm run build
 - Navigation and route guards use `GET /v1/organizations/{id}/access`. Hiding a
   link is only a convenience: the API checks every request.
 
+## Requisitions
+
+Under **Requisitions** (`requisitions:view`):
+
+- `/requisitions` lists them, newest change first; `?status=` filters
+  (draft, pending approval, approved, rejected) and stays in the URL.
+- `/requisitions/new` and `/requisitions/:id/edit` (`requisitions:create`)
+  create and edit drafts. The form checks the same rules as the API (required
+  fields, 1–50 openings, salary range with a currency) and maps the API's 422
+  field list back onto the fields. The hiring manager is picked from
+  `GET …/requisitions/hiring-managers`.
+- `/requisitions/:id` shows the requisition, its history, and one button per
+  action in the response's `allowedActions`, so a submitter never sees
+  Approve. Approve asks for an optional note, Reject for a required reason.
+- Every write sends the `version` the page loaded. If someone changed the
+  requisition in the meantime the API answers 409 and the page offers to
+  reload instead of overwriting.
+
+The workflow itself is described in `docs/requisitions.md`.
+
 ## Demo accounts
 
 With the `demo` profile the API creates one synthetic organization with a user

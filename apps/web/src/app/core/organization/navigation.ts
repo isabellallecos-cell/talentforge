@@ -23,6 +23,7 @@ export interface NavItem {
  */
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Overview', path: '/', anyOf: [] },
+  { label: 'Requisitions', path: '/requisitions', anyOf: ['requisitions:view'] },
   { label: 'Members', path: '/members', anyOf: ['members:view'] },
 ];
 
