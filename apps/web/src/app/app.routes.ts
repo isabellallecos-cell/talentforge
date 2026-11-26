@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { authGuard, guestGuard } from './core/auth/auth.guards';
+import { CareersListComponent } from './features/careers/careers-list.component';
+import { JobPostingComponent } from './features/careers/job-posting.component';
 import { HomeComponent } from './features/home/home.component';
 import { MembersComponent } from './features/members/members.component';
 import { LoginComponent } from './features/login/login.component';
@@ -13,6 +15,9 @@ import { ShellComponent } from './shell/shell.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [guestGuard], title: 'Sign in · TalentForge' },
+  // Public careers site: no sign-in, outside the app shell.
+  { path: 'careers/:slug', component: CareersListComponent, title: 'Careers' },
+  { path: 'careers/:slug/jobs/:jobId', component: JobPostingComponent, title: 'Job' },
   {
     path: '',
     component: ShellComponent,

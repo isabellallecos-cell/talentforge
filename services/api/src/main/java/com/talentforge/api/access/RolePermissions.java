@@ -3,6 +3,7 @@ package com.talentforge.api.access;
 import static com.talentforge.api.access.Permission.CANDIDATES_MANAGE;
 import static com.talentforge.api.access.Permission.CANDIDATES_VIEW;
 import static com.talentforge.api.access.Permission.INTERVIEWS_VIEW_ASSIGNED;
+import static com.talentforge.api.access.Permission.JOBS_PUBLISH;
 import static com.talentforge.api.access.Permission.MEMBERS_MANAGE;
 import static com.talentforge.api.access.Permission.MEMBERS_VIEW;
 import static com.talentforge.api.access.Permission.REQUISITIONS_APPROVE;
@@ -29,7 +30,7 @@ public final class RolePermissions {
     static {
         MATRIX.put(Role.ADMIN, EnumSet.allOf(Permission.class));
         MATRIX.put(Role.RECRUITER, EnumSet.of(
-                MEMBERS_VIEW, REQUISITIONS_VIEW, REQUISITIONS_CREATE,
+                MEMBERS_VIEW, REQUISITIONS_VIEW, REQUISITIONS_CREATE, JOBS_PUBLISH,
                 CANDIDATES_VIEW, CANDIDATES_MANAGE, INTERVIEWS_VIEW_ASSIGNED));
         MATRIX.put(Role.HIRING_MANAGER, EnumSet.of(
                 REQUISITIONS_VIEW, REQUISITIONS_CREATE, REQUISITIONS_APPROVE,

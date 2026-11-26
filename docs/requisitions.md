@@ -1,7 +1,7 @@
 # Job requisitions
 
 A requisition is a request to open a position. It has to be approved before it
-can be published to applicants (publishing comes with the applicant portal).
+can be published to applicants as a job posting (see [careers.md](careers.md)).
 
 ## Lifecycle
 
@@ -22,7 +22,8 @@ draft ──submit──▶ pending_approval ──approve──▶ approved
 | reject | pending_approval | rejected | same as approve; a reason (`note`) is required |
 | reopen | rejected | draft | `requisitions:create` |
 
-Approved is final for now. The rules live in `RequisitionWorkflow` (no I/O,
+Approved is final; publishing and closing the job posting are separate
+(see [careers.md](careers.md)). The rules live in `RequisitionWorkflow` (no I/O,
 covered by `RequisitionWorkflowTest`); the database repeats the important ones
 as CHECK constraints (status values, four-eyes, rejection reason, decision
 fields, salary range).

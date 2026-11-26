@@ -18,6 +18,7 @@ import {
   historyLabel,
 } from '../../core/requisitions/requisition.models';
 import { RequisitionsApi } from '../../core/requisitions/requisitions.service';
+import { RequisitionPostingComponent } from './requisition-posting.component';
 
 /**
  * One requisition, the buttons for the actions the API allows this caller
@@ -25,7 +26,7 @@ import { RequisitionsApi } from '../../core/requisitions/requisitions.service';
  */
 @Component({
   selector: 'tf-requisition-detail',
-  imports: [DatePipe, FormsModule, RouterLink],
+  imports: [DatePipe, FormsModule, RouterLink, RequisitionPostingComponent],
   template: `
     <p><a routerLink="/requisitions">← Requisitions</a></p>
 
@@ -96,6 +97,10 @@ import { RequisitionsApi } from '../../core/requisitions/requisitions.service';
           <dt>{{ r.status === 'rejected' ? 'Reason' : 'Decision note' }}</dt><dd class="pre">{{ r.decisionNote }}</dd>
         }
       </dl>
+
+      @if (r.status === 'approved') {
+        <tf-requisition-posting [requisitionId]="r.id" />
+      }
 
       @if (r.description) {
         <h2>Description</h2>

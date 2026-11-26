@@ -11,6 +11,7 @@ public enum Permission {
     REQUISITIONS_VIEW("requisitions:view"),
     REQUISITIONS_CREATE("requisitions:create"),
     REQUISITIONS_APPROVE("requisitions:approve"),
+    JOBS_PUBLISH("jobs:publish"),
     CANDIDATES_VIEW("candidates:view"),
     CANDIDATES_MANAGE("candidates:manage"),
     INTERVIEWS_VIEW_ASSIGNED("interviews:view-assigned"),

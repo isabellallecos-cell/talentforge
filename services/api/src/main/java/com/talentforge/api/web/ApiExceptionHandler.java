@@ -1,7 +1,10 @@
 package com.talentforge.api.web;
 
 import com.talentforge.api.access.OrganizationNotFoundException;
+import com.talentforge.api.careers.PublicJobNotFoundException;
 import com.talentforge.api.access.PermissionDeniedException;
+import com.talentforge.api.posting.PostingConflictException;
+import com.talentforge.api.posting.PostingNotFoundException;
 import com.talentforge.api.requisition.ActionNotAllowedException;
 import com.talentforge.api.requisition.InvalidTransitionException;
 import com.talentforge.api.requisition.RequisitionController.InvalidStatusFilterException;
@@ -90,5 +93,23 @@ public class ApiExceptionHandler {
     ResponseEntity<ApiError> actionNotAllowed(ActionNotAllowedException ex) {
         // The caller can already see the requisition, so the reason reveals nothing new.
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiError("not_allowed", ex.getMessage()));
+    }
+
+    @ExceptionHandler(PostingNotFoundException.class)
+    ResponseEntity<ApiError> postingNotFound() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError("not_found", "Job posting not found."));
+    }
+
+    @ExceptionHandler(PostingConflictException.class)
+    ResponseEntity<ApiError> postingConflict(PostingConflictException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiError(ex.getCode(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(PublicJobNotFoundException.class)
+    ResponseEntity<ApiError> publicJobNotFound() {
+        // Same answer for an unknown organization, an unknown job and a closed job.
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError("not_found", "This job is not open for applications."));
     }
 }

@@ -47,6 +47,18 @@ Under **Requisitions** (`requisitions:view`):
 
 The workflow itself is described in `docs/requisitions.md`.
 
+## Careers site
+
+- `/careers/:slug` and `/careers/:slug/jobs/:jobId` are public (no sign-in,
+  outside the shell): open jobs, one job, and the application form. The form
+  mirrors the API's rules, maps its 422 field list back, and shows a
+  confirmation that receives focus. Try `/careers/northwind-talent` with the
+  `demo` profile once a job is published.
+- Approved requisitions show a **Careers site** panel: publish, view the public
+  page, application count, close (`jobs:publish`).
+
+See `docs/careers.md`.
+
 ## Demo accounts
 
 With the `demo` profile the API creates one synthetic organization with a user

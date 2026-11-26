@@ -11,6 +11,7 @@ in one organization and an interviewer in another. The matrix lives in
 | See job requisitions | `requisitions:view` | ✅ | ✅ | ✅ | |
 | Draft job requisitions | `requisitions:create` | ✅ | ✅ | ✅ | |
 | Approve or reject requisitions | `requisitions:approve` | ✅ | | ✅ | |
+| Publish and close job postings | `jobs:publish` | ✅ | ✅ | | |
 | See candidates and applications | `candidates:view` | ✅ | ✅ | ✅ | |
 | Add candidates, move stages | `candidates:manage` | ✅ | ✅ | | |
 | See interviews assigned to me | `interviews:view-assigned` | ✅ | ✅ | ✅ | ✅ |
@@ -19,7 +20,8 @@ in one organization and an interviewer in another. The matrix lives in
 ## How a request is checked
 
 1. Spring Security requires a signed-in session for every `/v1/**` route except
-   `GET /v1/auth/csrf` and `POST /v1/auth/login` (401 `unauthenticated`).
+   `GET /v1/auth/csrf`, `POST /v1/auth/login` and the public careers routes
+   under `/v1/public/organizations/{slug}/jobs` (401 `unauthenticated`).
 2. `OrganizationAccess` reads the caller's membership for the organization in
    the URL **on every request**. Roles are not cached in the session, so a role
    change or removal applies on the next request.
@@ -40,6 +42,9 @@ in one organization and an interviewer in another. The matrix lives in
 | `POST …/requisitions`, `PUT …/requisitions/{rid}`, `GET …/requisitions/hiring-managers` | `requisitions:create` |
 | `POST …/requisitions/{rid}/submit`, `…/withdraw`, `…/reopen` | `requisitions:create` (withdraw: the submitter or an admin) |
 | `POST …/requisitions/{rid}/approve`, `…/reject` | `requisitions:approve`, plus the row-level rules in [requisitions.md](../requisitions.md) |
+| `GET /v1/organizations/{id}/jobs` | `requisitions:view` |
+| `POST /v1/organizations/{id}/jobs`, `POST …/jobs/{jid}/close` | `jobs:publish`; only approved requisitions, once each ([careers.md](../careers.md)) |
+| `GET /v1/public/organizations/{slug}/jobs[/{jid}]`, `POST …/{jid}/applications` | nothing (public); open postings only, CSRF still required for the POST |
 
 The web app may hide screens using `permissions`, but the API never trusts the
 client: every endpoint repeats the check.

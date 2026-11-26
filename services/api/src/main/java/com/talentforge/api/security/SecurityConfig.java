@@ -69,6 +69,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/v1/auth/csrf").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
+                        // Public careers site: open postings and anonymous applications.
+                        .requestMatchers(HttpMethod.GET, "/v1/public/organizations/*/jobs",
+                                "/v1/public/organizations/*/jobs/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/public/organizations/*/jobs/*/applications")
+                        .permitAll()
                         .requestMatchers("/actuator/health", "/actuator/health/**", "/actuator/info").permitAll()
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated())

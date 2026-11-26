@@ -42,7 +42,8 @@ public final class RequisitionWorkflow {
                 APPROVE, RequisitionStatus.APPROVED,
                 REJECT, RequisitionStatus.REJECTED));
         TRANSITIONS.put(RequisitionStatus.REJECTED, Map.of(REOPEN, RequisitionStatus.DRAFT));
-        // Approved is final for now; publishing and closing arrive with the applicant portal.
+        // Approved is final. Publishing to the careers site creates a separate
+        // job posting (see the posting package), which has its own open/closed status.
         TRANSITIONS.put(RequisitionStatus.APPROVED, Map.of());
     }
 

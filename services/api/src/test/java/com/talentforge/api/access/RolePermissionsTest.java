@@ -44,6 +44,11 @@ class RolePermissionsTest {
     }
 
     @Test
+    void recruitersAndAdminsPublishJobs() {
+        assertThat(rolesWith(Permission.JOBS_PUBLISH)).containsExactlyInAnyOrder(Role.ADMIN, Role.RECRUITER);
+    }
+
+    @Test
     void interviewersOnlySeeTheirInterviewsAndSubmitScorecards() {
         assertThat(RolePermissions.of(Role.INTERVIEWER))
                 .containsExactlyInAnyOrder(Permission.INTERVIEWS_VIEW_ASSIGNED, Permission.SCORECARDS_SUBMIT);
